@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Геометрія 7 клас | Мерзляк, Полонський, Якір</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- MathJax for Geometry Notation -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.4);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.7);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans min-h-screen flex flex-col transition-colors duration-200">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 glass-card">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            <!-- Brand Logo / Title -->
+            <a href="#" class="flex items-center gap-3 group focus:outline-none">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
+                    <i data-lucide="triangle" class="w-6 h-6 stroke-[2.5]"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight tracking-tight text-slate-900 dark:text-white">
+                        Геометрія <span class="text-blue-600 dark:text-blue-400">7 клас</span>
+                    </h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">А. Г. Мерзляк, В. Б. Полонський, М. С. Якір</p>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex items-center gap-1 text-sm font-medium">
+                <a href="#sec1" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">§1 Найпростіші фігури</a>
+                <a href="#sec2" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">§2 Трикутники</a>
+                <a href="#sec3" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">§3 Паралельні прямі</a>
+                <a href="#history" class="px-3 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">Історія геометрії</a>
+                <a href="#quiz-section" class="px-3 py-2 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/80 transition-colors font-semibold flex items-center gap-1.5">
+                    <i data-lucide="check-circle-2" class="w-4 h-4"></i> Тести
+                </a>
+            </nav>
+
+            <!-- Right Controls: Search Trigger & Dark Mode Toggle -->
+            <div class="flex items-center gap-2">
+                <!-- Quick Search Input Trigger -->
+                <div class="relative hidden sm:block w-48 md:w-64">
+                    <input type="text" id="globalSearchInput" placeholder="Пошук теорем, термінів..." 
+                           class="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg pl-9 pr-4 py-1.5 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <i data-lucide="search" class="w-4 h-4 absolute left-2.5 top-2 text-slate-400"></i>
+                    <div id="searchResultsDropdown" class="hidden absolute left-0 right-0 top-11 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl z-50 max-h-80 overflow-y-auto p-2"></div>
+                </div>
+
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" aria-label="Переключити тему" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+                </button>
+
+                <!-- Mobile Navigation Toggle -->
+                <button id="mobileMenuBtn" aria-label="Відкрити меню" class="p-2 rounded-xl lg:hidden text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Search + Menu Bar Expandable -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 px-4 py-3 bg-white dark:bg-slate-900 space-y-2">
+            <div class="relative mb-3">
+                <input type="text" id="mobileSearchInput" placeholder="Пошук теорем..." 
+                       class="w-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg pl-9 pr-4 py-2 text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3 text-slate-400"></i>
+            </div>
+            <a href="#sec1" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">§1 Найпростіші геометричні фігури</a>
+            <a href="#sec2" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">§2 Трикутники</a>
+            <a href="#sec3" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">§3 Паралельні прямі</a>
+            <a href="#history" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800">Історія геометрії</a>
+            <a href="#quiz-section" class="block px-3 py-2 rounded-lg text-sm font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60">Тести («Перевірте себе»)</a>
+        </div>
+    </header>
+
+    <!-- HERO / BANNER SECTION -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-blue-600 via-indigo-600 to-slate-900 text-white py-12 lg:py-16 px-4">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto relative z-10 text-center space-y-4">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-blue-100 backdrop-blur-md text-xs font-semibold tracking-wide uppercase border border-white/20">
+                <i data-lucide="book-open" class="w-3.5 h-3.5"></i> Освітній інтерактивний хаб
+            </span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+                Геометрія. 7 клас
+            </h2>
+            <p class="max-w-2xl mx-auto text-sm sm:text-base text-blue-100 font-light">
+                Повний теоретичний курс, інтерактивні SVG-моделі фігури, визначення, теореми, аксіоми та тестовий модуль «Перевірте себе» за програмою А. Г. Мерзляка.
+            </p>
+            
+            <div class="pt-4 flex flex-wrap justify-center gap-3 text-xs sm:text-sm font-medium">
+                <div class="px-4 py-2 rounded-xl bg-white/10 backdrop-blur border border-white/15 flex items-center gap-2">
+                    <i data-lucide="layers" class="w-4 h-4 text-blue-300"></i> 3 Великі розділи
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-white/10 backdrop-blur border border-white/15 flex items-center gap-2">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-yellow-300"></i> Інтерактивні креслення
+                </div>
+                <div class="px-4 py-2 rounded-xl bg-white/10 backdrop-blur border border-white/15 flex items-center gap-2">
+                    <i data-lucide="award" class="w-4 h-4 text-emerald-300"></i> 15 Тестових завдань
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16 flex-1">
+
+        <!-- ========================================== -->
+        <!-- SECTION 1: НАЙПРОСТІШІ ГЕОМЕТРИЧНІ ФІГУРИ -->
+        <!-- ========================================== -->
+        <section id="sec1" class="scroll-mt-20 space-y-8">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex items-center justify-between flex-wrap gap-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">Розділ I</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+                        § 1. Найпростіші геометричні фігури та їхні властивості
+                    </h2>
+                </div>
+                <span class="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold rounded-full">
+                    Точки, прямі, відрізки, кути
+                </span>
+            </div>
+
+            <!-- Content Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Card 1: Точка і пряма -->
+                <div class="bg-white dark:bg-slate-800/90 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2.5 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400">
+                            <i data-lucide="dot" class="w-6 h-6 stroke-[3]"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white">Точка і пряма</h3>
+                    </div>
+                    <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+                        <p>Основними геометричними фігурами на площині є <strong>точка</strong> і <strong>пряма</strong>.</p>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-100 dark:border-slate-800">
+                            <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 block mb-1">Основна аксіома:</span>
+                            Через будь-які дві точки можна провести пряму, і причому тільки одну.
+                        </div>
+                    </div>
+                    <!-- Dynamic SVG Visualizer -->
+                    <div class="mt-4 p-3 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700/60 flex justify-center">
+                        <svg viewBox="0 0 260 100" class="w-full h-24 stroke-current">
+                            <!-- Line a -->
+                            <line x1="20" y1="50" x2="240" y2="50" stroke="#3b82f6" stroke-width="2.5" />
+                            <text x="245" y="54" class="fill-slate-600 dark:fill-slate-400 text-xs italic">a</text>
+                            <!-- Point A -->
+                            <circle cx="70" cy="50" r="4.5" class="fill-blue-600 dark:fill-blue-400" />
+                            <text x="66" y="36" class="fill-slate-800 dark:fill-slate-200 font-bold text-xs">A</text>
+                            <!-- Point B -->
+                            <circle cx="180" cy="50" r="4.5" class="fill-blue-600 dark:fill-blue-400" />
+                            <text x="176" y="36" class="fill-slate-800 dark:fill-slate-200 font-bold text-xs">B</text>
+                            <!-- External Point C -->
+                            <circle cx="120" cy="80" r="4.5" class="fill-red-500" />
+                            <text x="128" y="84" class="fill-slate-800 dark:fill-slate-200 font-bold text-xs">C ∉ a</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Card 2: Відрізок i його довжина -->
+                <div class="bg-white dark:bg-slate-800/90 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2.5 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400">
+                            <i data-lucide="minus" class="w-6 h-6 stroke-[3]"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white">Відрізок і його властивості</h3>
+                    </div>
+                    <div class="space-y-3 text-sm text-slate-600 dark:text-slate-300">
+                        <p><strong>Відрізок</strong> — частина прямої, яка складається з двох точок (кінців) та усіх точок між ними.</p>
+                        <div class="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-100 dark:border-slate-800">
+                            <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 block mb-1">Основна властивість довжини:</span>
+                            Якщо точка $C$ належить відрізку $AB$, то $AB = AC + CB$.
+                        </div>
+                    </div>
+                    <!-- SVG Segment -->
+                    <div class="mt-4 p-3 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700/60 flex justify-center">
+                        <svg viewBox="0 0 260 90" class="w-full h-24">
+                            <line x1="30" y1="50" x2="230" y2="50" stroke="#6366f1" stroke-width="3" stroke-linecap="round"/>
+                            <circle cx="30" cy="50" r="5" class="fill-indigo-600" />
+                            <circle cx="150" cy="50" r="5" class="fill-indigo-600" />
+                            <circle cx="230" cy="50" r="5" class="fill-indigo-600" />
+                            <text x="24" y="32" class="fill-slate-800 dark:fill-slate-200 font-bold text-xs">A</text>
+                            <text x="146" y="32" class="fill-slate-800 dark:fill-slate-200 font-bold text-xs">C</text>
+                            <text x="224" y="32" class="fill-slate-800 dark:fill-slate-200 font-bold text-xs">B</text>
+                            <text x="80" y="72" class="fill-indigo-600 dark:fill-indigo-400 text-xs font-semibold">AC</text>
+                            <text x="180" y="72" class="fill-indigo-600 dark:fill-indigo-400 text-xs font-semibold">CB</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Card 3: Інтерактивний Кут та Бісектриса -->
+                <div class="bg-white dark:bg-slate-800/90 rounded-2xl p-6 border border-slate-200/80 dark:border-slate-700/80 shadow-sm hover:shadow-md transition-shadow lg:col-span-1 md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2.5 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400">
+                            <i data-lucide="pie-chart" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 dark:text-white">Суміжні та вертикальні кути</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">
+                        <strong>Суміжні кути:</strong> мають спільну сторону, а інші два промені є доповняльними. Сума дорівнює $180^\circ$.<br>
+                        <strong>Вертикальні кути:</strong> рівні між собою.
+                    </p>
+
+                    <!-- Interactive Angle Slider Box -->
+                    <div class="p-3 bg-purple-50/50 dark:bg-slate-900 rounded-xl border border-purple-100 dark:border-slate-700/60 space-y-3">
+                        <div class="flex items-center justify-between text-xs font-semibold text-slate-700 dark:text-slate-300">
+                            <span>Кут $\alpha$: <strong id="angleAlphaValue" class="text-purple-600 dark:text-purple-400 text-sm">60°</strong></span>
+                            <span>Суміжний $\beta$: <strong id="angleBetaValue" class="text-indigo-600 dark:text-indigo-400 text-sm">120°</strong></span>
+                        </div>
+                        <input type="range" id="angleSlider" min="10" max="170" value="60" class="w-full accent-purple-600 cursor-pointer">
+                        <div class="flex justify-center">
+                            <svg id="angleSvgCanvas" viewBox="0 0 240 100" class="w-full h-24"></svg>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- SECTION 2: ТРИКУТНИКИ -->
+        <!-- ========================================== -->
+        <section id="sec2" class="scroll-mt-20 space-y-8">
+            <div class="border-b border-slate-200 dark:border-slate-800 pb-4 flex items-center justify-between flex-wrap gap-4">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Розділ II</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+                        § 2. Трикутники та їх властивості
+                    </h2>
+                </div>
+                <span class="px-3 py-1 bg-emera
